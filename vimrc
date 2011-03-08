@@ -1,6 +1,20 @@
 set nocompatible
 
-set number
+" call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Hide buffers instead of closing them
+set hidden
+
+"set number
+set relativenumber
 set ruler
 syntax on
 
@@ -14,6 +28,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set list listchars=tab:\ \ ,trail:·
+set autoindent
+set copyindent
+set smarttab " insert tabs on the start of a line according to shiftwidth, not tabstop
 
 " Searching
 set hlsearch
@@ -23,7 +40,43 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,*.bak,*.swp,*.class
+
+set history=1000
+set undolevels=1000
+set title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+nnoremap ; :
+
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
+
+" No arrows for you
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+nnoremap j gj
+nnoremap k gk
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR
+
+" Save a file with sudo after opening as non-sudo
+cmap w!! w !sudo tee % >/dev/null
+
+" Escape INSERT mode quicker
+inoremap jj <ESC>
 
 " Status bar
 set laststatus=2
