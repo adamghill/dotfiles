@@ -4,7 +4,7 @@
 call pathogen#infect()
 
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 
 " change the mapleader from \ to ,
@@ -78,7 +78,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Clear highlighted searches
-nmap <silent> ,/ :nohlsearch<CR
+nmap <silent> ,/ :nohlsearch<CR>
 
 " Save a file with sudo after opening as non-sudo
 cmap w!! w !sudo tee % >/dev/null
