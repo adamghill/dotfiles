@@ -5,7 +5,6 @@ call pathogen#infect()
 
 syntax enable
 set background=light
-colorscheme solarized
 
 " change the mapleader from \ to ,
 let mapleader=","
