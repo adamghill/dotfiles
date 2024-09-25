@@ -6,7 +6,7 @@
 
 A command runner of epic proportions. Less frustrating than `make` and cooler than a bunch of `bash` scripts.
 
-- `justfile`: My opinionated default configuration for [`just`](https://just.systems/man/en/). It is mostly tailored toward Python/Django projects.
+- [justfile](just/justfile): My opinionated default configuration for [`just`](https://just.systems/man/en/). It is mostly tailored toward Python/Django projects.
     - [uv](https://docs.astral.sh/uv/)
     - [twine](https://twine.readthedocs.io/)
     - [mypy](https://www.mypy-lang.org/)
@@ -33,22 +33,22 @@ serve:
 
 ## git ⚙️
 
-If you actually understand how it works, you are smarter than I. The 3 commands I know, I know _really_ well, though.
+If you actually understand how `git` works, you are smarter than I. The 3 commands I know, I know _really_ well, though.
 
-- `.gitconfig`: Some useful aliases when working with `git`. Gets copied to `~`.
+- [.gitconfig](git/.gitconfig): Some useful aliases when working with `git`. Gets copied to `~`.
 
 ## fish 🐟
 
 I was bored one day and tried `fish`. It stuck. 🤷
 
-- `config.fish`: Configuration for the `fish` shell. Gets copied to `~/.config/fish/`. Uses the following projects.    
+- [config.fish](fish/config.fish): Configuration for the `fish` shell. Gets copied to `~/.config/fish/`. Uses the following projects.    
     - [starship](https://starship.rs/)
 
 ## vscode 📝
 
 "You can take `Sublime Text` from my cold, dead hands" I said to no one in particular a long time ago. I'm still alive, but here we are using the other other Visual Studio. It's good! I like!
 
-- `settings.json`: Configuration for [VS Code](https://code.visualstudio.com/).
+- [settings.json](vscode/settings.json): Configuration for [VS Code](https://code.visualstudio.com/).
     - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
     - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
