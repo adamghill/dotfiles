@@ -16,11 +16,17 @@
     - [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild#readme)
     - [coverage](https://coverage.readthedocs.io/)
 
-To use it, I create a new `justfile` for each individual project that imports this `justfile` and overrides anything that might be unique.
+To use it, I create a new `justfile` for each individual project that imports the default `justfile` and overrides anything that might be unique.
 
 ```justfile
-import '../dotfiles/just/justfile'
+import? 'adamghill.justfile'
+import? '../dotfiles/just/justfile'
 
+# Grab default `adamghill.justfile` from GitHub
+fetch:
+  curl https://raw.githubusercontent.com/adamghill/dotfiles/master/just/justfile > adamghill.justfile
+
+# This is a custom recipe that overrides the default recipe
 serve:
   uv run python3 example/app.py runserver 0:8055
 ```
