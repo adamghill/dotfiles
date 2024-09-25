@@ -16,7 +16,7 @@ A command runner of epic proportions. Less frustrating than `make` and cooler th
     - [sphinx-autobuild](https://github.com/sphinx-doc/sphinx-autobuild#readme)
     - [coverage](https://coverage.readthedocs.io/)
 
-To use it, I create a new `justfile` for each individual project that imports the default `justfile` and overrides anything that might be unique.
+To use it, I create a new `justfile` for each individual project that imports the default `justfile` and override anything that might be unique.
 
 ```justfile
 import? 'adamghill.justfile'
