@@ -2,10 +2,13 @@ set quiet
 set dotenv-load
 set export
 set allow-duplicate-recipes
+set allow-duplicate-variables
+
+src := "src"
 
 # List commands
 _default:
-    just --list --unsorted --justfile {{justfile()}} --list-heading $'Available commands:\n'
+    just --list --unsorted --justfile {{ justfile() }} --list-heading $'Available commands:\n'
   
 # Install dependencies
 bootstrap:
@@ -45,8 +48,8 @@ test *ARGS='':
 alias t := test
 
 # Run coverage on the code
-coverage name='src':
-  -uv run pytest --cov={{ name }}
+coverage:
+  -uv run pytest --cov={{ src }}
 
 # Run all the dev things
 dev:
