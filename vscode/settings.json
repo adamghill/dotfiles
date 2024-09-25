@@ -1,0 +1,72 @@
+{
+    "editor.minimap.enabled": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[django-html]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[markdown]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/*/*.html": "django-html",
+        "**/templates/*": "django-html",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Fira Code, Hack, Menlo, Monaco, 'Courier New', monospace",
+    "window.zoomLevel": -1,
+    "workbench.startupEditor": "none",
+    "python.languageServer": "Pylance",
+    "extensions.ignoreRecommendations": true,
+    "editor.formatOnSave": true,
+    "html.autoClosingTags": false,
+    "html.format.enable": false,
+    "workbench.quickOpen.closeOnFocusLost": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "editor.codeActionsOnSave": {},
+    "python.testing.pytestEnabled": true,
+    "workbench.colorTheme": "GitHub Light",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "beautify.language": {
+        "js": {
+            "type": ["javascript", "json", "jsonc"],
+            "filename": [".jshintrc", ".jsbeautifyrc"]
+        },
+        "css": ["css", "less", "scss"],
+        "html": ["htm", "html", "django-html"]
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "always",
+    "cSpell.userWords": [],
+    "[jsonc]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        }
+    },
+    "workbench.editor.enablePreview": false,
+}

@@ -1,0 +1,25 @@
+[alias]
+  c = commit -m
+  a = add
+  aa = !git add -u && git add . && git status
+  co = checkout
+  cob = checkout -b
+  up = !git fetch origin && git rebase origin/master
+  ir = !git rebase -i origin/master
+  undo = reset HEAD~1 --mixed
+  st = status --short
+  last=log --name-status -1 HEAD
+  amend = !git commit --amend
+  pl = !git pull origin $(git name-rev --name-only HEAD)
+  ps = !git push origin $(git name-rev --name-only HEAD)
+  brv = "!f() { git branch --sort=-creatordate --color=always --format='%(color:reset)%(creatordate:short) %(color:bold white)%(align:2,right)%(upstream:trackshort)%(end)%(color:nobold) %(align:40,left)%(color:yellow)%(refname:short)%(end) %(color:reset)%(contents:subject)'; }; f"
+  wip = for-each-ref --sort='-authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+
+[core]
+  pager = diff-so-fancy | less -iFRQX
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
