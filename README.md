@@ -1,10 +1,10 @@
-# dotfiles
+# dotfiles ⚫️📂
 
->It's stuff I use. Sometimes.
+[This gist](https://gist.github.com/adamghill/d107a729923dff1b6c0aa17c72d1c5ff) has more details about the applications and setups I have for a clean MacOS install -- this repo is only a place to keep the configuration files.
 
-[This gist](https://gist.github.com/adamghill/d107a729923dff1b6c0aa17c72d1c5ff) has other details.
+## just 🏃
 
-## just
+A command runner of epic proportions. Less frustrating than `make` and cooler than a bunch of `bash` scripts.
 
 - `justfile`: My opinionated default configuration for [`just`](https://just.systems/man/en/). It is mostly tailored toward Python/Django projects.
     - [uv](https://docs.astral.sh/uv/)
@@ -31,16 +31,22 @@ serve:
   uv run python3 example/app.py runserver 0:8055
 ```
 
-## git
+## git ⚙️
+
+If you actually understand how it works, you are smarter than I. The 3 commands I know, I know _really_ well, though.
 
 - `.gitconfig`: Some useful aliases when working with `git`. Gets copied to `~`.
 
-## fish
+## fish 🐟
+
+I was bored one day and tried `fish`. It stuck. 🤷
 
 - `config.fish`: Configuration for the `fish` shell. Gets copied to `~/.config/fish/`. Uses the following projects.    
     - [starship](https://starship.rs/)
 
-## vscode
+## vscode 📝
+
+"You can take `Sublime Text` from my cold, dead hands" I said to no one in particular a long time ago. I'm still alive, but here we are using the other other Visual Studio. It's good! I like!
 
 - `settings.json`: Configuration for [VS Code](https://code.visualstudio.com/).
     - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
