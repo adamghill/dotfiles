@@ -9,17 +9,17 @@ src := "src"
 # List commands
 _default:
     just --list --unsorted --justfile {{ justfile() }} --list-heading $'Available commands:\n'
-  
-# Install dependencies
-bootstrap:
-  uv install
 
-# Set up the project
+# Set up base tools
 setup:
   curl -LsSf https://astral.sh/uv/install.sh | sh
   uv tool install ruff
   uv tool install build
   uv tool install twine
+  
+# Install dependencies
+bootstrap:
+  uv install
 
 # Update the project
 update:
@@ -27,7 +27,7 @@ update:
 
 # Lock the dependencies
 lock:
-  uv sync
+  uv lock
 
 # Lint the project
 lint *ARGS='.':
