@@ -22,6 +22,12 @@ To use it, I create a new `justfile` for each individual project that imports th
 import? 'adamghill.justfile'
 import? '../dotfiles/just/justfile'
 
+src := "src/some_project"
+
+# List commands
+_default:
+    just --list --unsorted --justfile {{ justfile() }} --list-heading $'Available commands:\n'
+
 # Grab default `adamghill.justfile` from GitHub
 fetch:
   curl https://raw.githubusercontent.com/adamghill/dotfiles/master/just/justfile > adamghill.justfile
