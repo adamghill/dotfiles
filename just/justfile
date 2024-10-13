@@ -4,6 +4,8 @@ set export
 set allow-duplicate-recipes
 set allow-duplicate-variables
 
+alias t := test
+
 src := "src"
 
 # List commands
@@ -45,8 +47,6 @@ benchmark:
 test *ARGS='':
   -uv run pytest {{ ARGS }}
 
-alias t := test
-
 # Run coverage on the code
 coverage:
   -uv run pytest --cov={{ src }}
@@ -57,13 +57,23 @@ dev:
   just type
   just coverage
 
+# Run the development server
 serve port='8000':
   uv run python3 manage.py runserver 0:{{ port }}
+
+# Run documentation site
+docs-serve:
+  uv run sphinx-autobuild -W docs/source docs/build
+
+# Build documentation site
+docs-build:
+  cp CHANGELOG.md docs/source/changelog.md
+  uv run sphinx-build -W docs/source docs/build
 
 # Build the package
 build:
   just test
-  just build-docs
+  just docs-build
   rm -rf dist/*
   uvx --from build pyproject-build --installer uv
 
@@ -72,13 +82,5 @@ publish:
   just build
   uvx twine check dist/*
   uvx twine upload -r testpypi dist/*
-  uvx twine upload -r pypi dist/*
-
-# Run documentation site
-serve-docs:
-  uv run sphinx-autobuild -W docs/source docs/build
-
-# Build documentation site
-build-docs:
-  cp CHANGELOG.md docs/source/changelog.md
-  uv run sphinx-build -W docs/source docs/build
+  echo
+  uvx twine upload -r pypi dist/*  # need to look at uv publish, but not sure about support for test.pypi.org
