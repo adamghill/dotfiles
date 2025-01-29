@@ -5,6 +5,10 @@ set allow-duplicate-recipes
 set allow-duplicate-variables
 
 alias t := test
+alias s := serve
+alias m := manage
+alias mi := migrate
+alias mm := makemigrations
 
 src := "src"
 
@@ -18,10 +22,6 @@ setup:
   uv tool install ruff
   uv tool install build
   uv tool install twine
-  
-# Install dependencies
-bootstrap:
-  uv install
 
 # Update the project
 update:
@@ -37,19 +37,19 @@ lint *ARGS='.':
 
 # Check the types in the project
 type *ARGS='.':
-  -uv run mypy {{ ARGS }}  # need to run through uv to see installed dependencies
+  -uv run --all-extras mypy {{ ARGS }}  # need to run through uv to see installed dependencies
 
 # Benchmark the project
 benchmark:
-  -uv run pytest tests/benchmarks/ --benchmark-only --benchmark-compare
+  -uv run --all-extras pytest tests/benchmarks/ --benchmark-only --benchmark-compare
 
 # Run the tests
 test *ARGS='':
-  -uv run pytest {{ ARGS }}
+  -uv run --all-extras pytest {{ ARGS }}
 
 # Run coverage on the code
 coverage:
-  -uv run pytest --cov={{ src }}
+  -uv run --all-extras pytest --cov={{ src }}
 
 # Run all the dev things
 dev:
@@ -59,28 +59,58 @@ dev:
 
 # Run the development server
 serve port='8000':
-  uv run python3 manage.py runserver 0:{{ port }}
+  just manage runserver 0:{{ port }}
+
+# Run database migrations
+migrate:
+  just manage migrate
+
+# Make database migrations
+makemigrations:
+  just manage makemigrations
+
+# Do the migrate dane (make migrations and run them)
+md:
+  just makemigrations
+  just migrate
+
+# Make database migrations
+manage *ARGS='':
+  uv run --all-extras python3 manage.py {{ ARGS }}
+
+# Start a new Django project
+project-create:
+  just bootstrap
+  uv run django-admin startproject project .
+  
+# Start a new app
+app-create name:
+  just bootstrap
+  uv run django-admin startapp {{ name }}
 
 # Run documentation site
 docs-serve:
-  uv run sphinx-autobuild -W docs/source docs/build
+  uv run --all-extras sphinx-autobuild -W docs/source docs/build
 
 # Build documentation site
 docs-build:
   cp CHANGELOG.md docs/source/changelog.md
-  uv run sphinx-build -W docs/source docs/build
+  uv run --all-extras sphinx-build -W docs/source docs/build
 
 # Build the package
 build:
   just test
   just docs-build
   rm -rf dist/*
-  uvx --from build pyproject-build --installer uv
+  # uvx --from build pyproject-build --installer uv
+  uv build --no-sources
 
 # Build and publish the package to test PyPI and prod PyPI
 publish:
   just build
-  uvx twine check dist/*
-  uvx twine upload -r testpypi dist/*
-  echo
-  uvx twine upload -r pypi dist/*  # need to look at uv publish, but not sure about support for test.pypi.org
+  # uvx twine check dist/*
+  # uvx twine upload -r testpypi dist/*
+  # echo
+  # uvx twine upload -r pypi dist/*  # need to look at uv publish, but not sure about support for test.pypi.org
+  uv publish --index testpypi --token
+  uv publish --index pypi
