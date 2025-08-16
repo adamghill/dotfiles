@@ -6,9 +6,12 @@ set allow-duplicate-variables
 
 alias t := test
 alias s := serve
+alias run := serve
 alias m := manage
 alias mi := migrate
 alias mm := makemigrations
+alias bake := makemigrations
+alias md := dance
 
 src := "src"
 
@@ -47,6 +50,14 @@ benchmark:
 test *ARGS='':
   -uv run --all-extras pytest {{ ARGS }}
 
+# Run the tests with integration tests
+test-integration *ARGS='':
+  -uv run --all-extras pytest {{ ARGS }} -m integration
+
+# Run all tests
+test-all *ARGS='':
+  -uv run --all-extras pytest {{ ARGS }} -m integration
+
 # Run coverage on the code
 coverage:
   -uv run --all-extras pytest --cov={{ src }}
@@ -62,19 +73,19 @@ serve port='8000':
   just manage runserver 0:{{ port }}
 
 # Run database migrations
-migrate:
-  just manage migrate
+migrate *ARGS='':
+  just manage migrate {{ ARGS }}
 
 # Make database migrations
 makemigrations:
   just manage makemigrations
 
-# Do the migrate dane (make migrations and run them)
-md:
+# Do the migrate dance (make migrations and run them)
+dance:
   just makemigrations
   just migrate
 
-# Make database migrations
+# Manage
 manage *ARGS='':
   uv run --all-extras python3 manage.py {{ ARGS }}
 
