@@ -6,7 +6,7 @@
 
 A command runner of epic proportions. Less frustrating than `make` and cooler than a bunch of `bash` scripts.
 
-- [justfile](just/justfile): My opinionated default configuration for [`just`](https://just.systems/man/en/). It is mostly tailored toward Python/Django projects.
+- [justfile](just/justfile): My opinionated default configuration for [`just`](https://just.systems/man/en/). It is mostly tailored toward Python/Django projects and includes the following tools:
     - [uv](https://docs.astral.sh/uv/)
     - [twine](https://twine.readthedocs.io/)
     - [mypy](https://www.mypy-lang.org/)
@@ -19,6 +19,8 @@ A command runner of epic proportions. Less frustrating than `make` and cooler th
 To use it, I create a new `justfile` for each individual project that imports the default `justfile` and override anything that might be unique.
 
 ```justfile
+export UV_ENV_FILE := ".env"
+
 import? 'adamghill.justfile'
 import? '../dotfiles/just/justfile'
 
